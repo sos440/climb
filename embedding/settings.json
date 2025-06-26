@@ -1,0 +1,13 @@
+{
+    "model-options": {
+        "150M": {
+            "name": "esm2_t30_150M_UR50D"
+        },
+        "650M": {
+            "name": "esm2_t33_650M_UR50D"
+        },
+        "3B": {
+            "name": "esm2_t36_3B_UR50D"
+        }
+    }
+}

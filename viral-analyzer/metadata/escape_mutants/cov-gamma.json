@@ -1,0 +1,108 @@
+{
+    "SARS-CoV-2-Gamma>DMS": {
+        "reference-strain": "SARS-CoV-2-Gamma",
+        "prefix": "gamma2dms",
+        "description": "Proxy for the escape mutations of the Gamma variant against the DMS data",
+        "mutations": [
+            "K416E",
+            "K443Q",
+            "V444A",
+            "N449D",
+            "Y452F",
+            "L454F",
+            "E483K",
+            "G484D",
+            "F485V",
+            "F489S",
+            "F489L",
+            "Q492K",
+            "H654Y",
+            "R681Q",
+            "R684S",
+            "V686G",
+            "G768E",
+            "Q778K",
+            "V1127A"
+        ]
+    },
+    "SARS-CoV-2-Gamma>Alpha": {
+        "reference-strain": "SARS-CoV-2-Gamma",
+        "prefix": "gamma2alpha",
+        "description": "Proxy for the escape mutations of the Gamma variant against the Alpha variant",
+        "mutations": [
+            "N500Y",
+            "A569D",
+            "P680H",
+            "T715I",
+            "S981A",
+            "D1117H"
+        ]
+    },
+    "SARS-CoV-2-Gamma>Beta": {
+        "reference-strain": "SARS-CoV-2-Gamma",
+        "prefix": "gamma2beta",
+        "description": "Proxy for the escape mutations of the Gamma variant against the Beta variant",
+        "mutations": [
+            "L17F",
+            "D79A",
+            "D214G",
+            "K416N",
+            "E483K",
+            "N500Y",
+            "A700V"
+        ]
+    },
+    "SARS-CoV-2-Gamma>Delta": {
+        "reference-strain": "SARS-CoV-2-Gamma",
+        "prefix": "gamma2delta",
+        "description": "Proxy for the escape mutations of the Gamma variant against the Delta variant",
+        "mutations": [
+            "T18R",
+            "T94X",
+            "G141D",
+            "E155X",
+            "F156X",
+            "R157X",
+            "L451R",
+            "T477K",
+            "P680R",
+            "D949N"
+        ]
+    },
+    "SARS-CoV-2-Gamma>Omicron": {
+        "reference-strain": "SARS-CoV-2-Gamma",
+        "prefix": "gamma2omicron",
+        "description": "Proxy for the escape mutations of the Gamma variant against the Omicron variant",
+        "mutations": [
+            "A66V",
+            "T94I",
+            "G141D",
+            "L211I",
+            "G338D",
+            "S370L",
+            "S372P",
+            "S374F",
+            "K416N",
+            "N439K",
+            "G445S",
+            "S476N",
+            "T477K",
+            "E483A",
+            "Q492R",
+            "G495S",
+            "Q497R",
+            "N500Y",
+            "Y504H",
+            "T546K",
+            "H654Y",
+            "N678K",
+            "P680H",
+            "N763K",
+            "D795Y",
+            "N855K",
+            "Q953H",
+            "N968K",
+            "L980F"
+        ]
+    }
+}

@@ -1,0 +1,93 @@
+{
+    "SARS-CoV-2-WildType": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-WildType",
+        "description": "Wild type SARS-CoV-2",
+        "prefix": "cov-wt",
+        "sequence-path": "data/sequences/seq_cov_wt.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    },
+    "SARS-CoV-2-Alpha": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-Alpha",
+        "description": "Alpha variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/MZ344997.1)",
+        "prefix": "cov-alpha",
+        "sequence-path": "data/sequences/seq_cov_alpha.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    },
+    "SARS-CoV-2-Beta": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-Beta",
+        "description": "Beta variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/MZ433432.1)",
+        "prefix": "cov-beta",
+        "sequence-path": "data/sequences/seq_cov_beta.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    },
+    "SARS-CoV-2-Beta-RBD": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-Beta (RBD only)",
+        "description": "RBD domain of the beta variant of SARS-CoV-2 (https://doi.org/10.1371/journal.ppat.1010248)",
+        "prefix": "cov-beta-rbd",
+        "sequence-path": "data/sequences/seq_cov_beta_rbd.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    },
+    "SARS-CoV-2-Gamma": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-Gamma",
+        "description": "Gamma variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/MZ477859.1)",
+        "prefix": "cov-gamma",
+        "sequence-path": "data/sequences/seq_cov_gamma.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    },
+    "SARS-CoV-2-Delta": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-Delta",
+        "description": "Delta variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/OK091006.1)",
+        "prefix": "cov-delta",
+        "sequence-path": "data/sequences/seq_cov_delta.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    },
+    "SARS-CoV-2-Omicron": {
+        "virus": "SARS-CoV-2",
+        "name": "SARS-CoV-2-Omicron",
+        "description": "Omicron variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/OL672836)",
+        "prefix": "cov-omicron",
+        "sequence-path": "data/sequences/seq_cov_omicron.csv",
+        "stat-dist": [
+            8954,
+            5492,
+            5863,
+            9594
+        ]
+    }
+}

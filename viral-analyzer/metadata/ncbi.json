@@ -1,0 +1,37 @@
+{
+    "SARS-CoV-2-Alpha": {
+        "description": "Alpha variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/MZ344997.1)",
+        "sequence-path": "data/surface_glycoprotein/alpha.txt",
+        "range": "21500..25312",
+        "nucleotide-path": "data/nucleotide/alpha.txt",
+        "output-path": "data/seq_cov_alpha.csv"
+    },
+    "SARS-CoV-2-Beta": {
+        "description": "Beta variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/MZ433432.1)",
+        "sequence-path": "data/surface_glycoprotein/beta.txt",
+        "range": "21544..25356",
+        "nucleotide-path": "data/nucleotide/beta.txt",
+        "output-path": "data/seq_cov_beta.csv"
+    },
+    "SARS-CoV-2-Gamma": {
+        "description": "Gamma variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/MZ477859.1)",
+        "sequence-path": "data/surface_glycoprotein/gamma.txt",
+        "range": "21556..25377",
+        "nucleotide-path": "data/nucleotide/gamma.txt",
+        "output-path": "data/seq_cov_gamma.csv"
+    },
+    "SARS-CoV-2-Delta": {
+        "description": "Delta variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/OK091006.1)",
+        "sequence-path": "data/surface_glycoprotein/delta.txt",
+        "range": "21536..25357",
+        "nucleotide-path": "data/nucleotide/delta.txt",
+        "output-path": "data/seq_cov_delta.csv"
+    },
+    "SARS-CoV-2-Omicron": {
+        "description": "Omicron variant of SARS-CoV-2 (https://www.ncbi.nlm.nih.gov/nuccore/OL672836)",
+        "sequence-path": "data/surface_glycoprotein/omicron.txt",
+        "range": "21497..25309",
+        "nucleotide-path": "data/nucleotide/omicron.txt",
+        "output-path": "data/seq_cov_omicron.csv"
+    }
+}

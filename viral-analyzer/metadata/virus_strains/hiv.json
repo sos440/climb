@@ -1,0 +1,15 @@
+{
+    "HIV": {
+        "virus": "HIV",
+        "name": "HIV Wildtype",
+        "description": "Wild type HIV (See Hie. et al.)",
+        "prefix": "hiv",
+        "sequence-path": "data/sequences/seq_hiv_wt.csv",
+        "stat-dist": [
+            566078358,
+            259501432,
+            342037897,
+            345128487
+        ]
+    }
+}

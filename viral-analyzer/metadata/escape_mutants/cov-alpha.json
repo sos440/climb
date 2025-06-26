@@ -1,0 +1,119 @@
+{
+    "SARS-CoV-2-Alpha>DMS": {
+        "reference-strain": "SARS-CoV-2-Alpha",
+        "prefix": "alpha2dms",
+        "description": "Proxy for the escape mutations of the Alpha variant against the DMS data",
+        "mutations": [
+            "K413E",
+            "K440Q",
+            "V441A",
+            "N446D",
+            "Y449F",
+            "L451F",
+            "E480K",
+            "G481D",
+            "F482V",
+            "F486S",
+            "F486L",
+            "Q489K",
+            "H651Y",
+            "R678Q",
+            "R681S",
+            "V683G",
+            "G765E",
+            "Q775K",
+            "V1124A"
+        ]
+    },
+    "SARS-CoV-2-Alpha>Beta": {
+        "reference-strain": "SARS-CoV-2-Alpha",
+        "prefix": "alpha2beta",
+        "description": "Proxy for the escape mutations of the Alpha variant against the Beta variant",
+        "mutations": [
+            "L17F",
+            "D77A",
+            "D211G",
+            "K413N",
+            "E480K",
+            "D566A",
+            "H677P",
+            "A697V",
+            "I712T",
+            "A978S",
+            "H1114D"
+        ]
+    },
+    "SARS-CoV-2-Alpha>Gamma": {
+        "reference-strain": "SARS-CoV-2-Alpha",
+        "prefix": "alpha2gamma",
+        "description": "Proxy for the escape mutations of the Alpha variant against the Gamma variant",
+        "mutations": [
+            "Y497N",
+            "D566A",
+            "H677P",
+            "I712T",
+            "A978S",
+            "H1114D"
+        ]
+    },
+    "SARS-CoV-2-Alpha>Delta": {
+        "reference-strain": "SARS-CoV-2-Alpha",
+        "prefix": "alpha2delta",
+        "description": "Proxy for the escape mutations of the Alpha variant against the Delta variant",
+        "mutations": [
+            "T18R",
+            "T92X",
+            "G139D",
+            "E152X",
+            "F153X",
+            "R154X",
+            "L448R",
+            "T474K",
+            "Y497N",
+            "D566A",
+            "H677R",
+            "I712T",
+            "D946N",
+            "A978S",
+            "H1114D"
+        ]
+    },
+    "SARS-CoV-2-Alpha>Omicron": {
+        "reference-strain": "SARS-CoV-2-Alpha",
+        "prefix": "alpha2omicron",
+        "description": "Proxy for the escape mutations of the Alpha variant against the Omicron variant",
+        "mutations": [
+            "A66V",
+            "T92I",
+            "G139D",
+            "L208I",
+            "G335D",
+            "S367L",
+            "S369P",
+            "S371F",
+            "K413N",
+            "N436K",
+            "G442S",
+            "S473N",
+            "T474K",
+            "E480A",
+            "Q489R",
+            "G492S",
+            "Q494R",
+            "Y501H",
+            "T543K",
+            "D566A",
+            "H651Y",
+            "N675K",
+            "I712T",
+            "N760K",
+            "D792Y",
+            "N852K",
+            "Q950H",
+            "N965K",
+            "L977F",
+            "A978S",
+            "H1114D"
+        ]
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "SARS-CoV-2-Omicron-ESM-150M": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-Omicron",
+        "prefix": "esm2-150m-cos",
+        "path": "data/model_results/cov-omicron/esm2_t30_150M_UR50D.tsv"
+    },
+    "SARS-CoV-2-Omicron-ESM-650M": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-Omicron",
+        "prefix": "esm2-650m-cos",
+        "path": "data/model_results/cov-omicron/esm2_t33_650M_UR50D.tsv"
+    },
+    "SARS-CoV-2-Omicron-ESM-3B": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-Omicron",
+        "prefix": "esm2-3b-cos",
+        "path": "data/model_results/cov-omicron/esm2_t36_3B_UR50D.tsv"
+    },
+    "SARS-CoV-2-Omicron-Random": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-Omicron",
+        "prefix": "random",
+        "description": "This is a special entry for the randomized negative control model.",
+        "path": "random"
+    }
+}

@@ -1,0 +1,79 @@
+{
+    "SARS-CoV-2-WildType-Hie": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "hie",
+        "path": "data/model_results/cov-wt/cov_hie.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-150M-Cos": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-150m-cos",
+        "columns": ["pos", "wt", "mut", "prob", "change"],
+        "path": "data/model_results/cov-wt/cov_esm2_150m.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-150M-L1": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-150m-l1",
+        "columns": ["pos", "wt", "mut", "prob", "change_l1"],
+        "path": "data/model_results/cov-wt/cov_esm2_150m.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-150M-L2": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-150m-l2",
+        "columns": ["pos", "wt", "mut", "prob", "change_l2"],
+        "path": "data/model_results/cov-wt/cov_esm2_150m.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-650M-Cos": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-650m-cos",
+        "columns": ["pos", "wt", "mut", "prob", "change_cos"],
+        "path": "data/model_results/cov-wt/cov_esm2_650m.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-650M-L1": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-650m-l1",
+        "columns": ["pos", "wt", "mut", "prob", "change"],
+        "path": "data/model_results/cov-wt/cov_esm2_650m.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-650M-L2": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-650m-l2",
+        "columns": ["pos", "wt", "mut", "prob", "change_l2"],
+        "path": "data/model_results/cov-wt/cov_esm2_650m.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-3B-Cos": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-3b-cos",
+        "columns": ["pos", "wt", "mut", "prob", "change"],
+        "path": "data/model_results/cov-wt/cov_esm2_3b.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-3B-L1": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-3b-l1",
+        "columns": ["pos", "wt", "mut", "prob", "change_l1"],
+        "path": "data/model_results/cov-wt/cov_esm2_3b.tsv"
+    },
+    "SARS-CoV-2-WildType-ESM-3B-L2": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "esm2-3b-l2",
+        "columns": ["pos", "wt", "mut", "prob", "change_l2"],
+        "path": "data/model_results/cov-wt/cov_esm2_3b.tsv"
+    },
+    "SARS-CoV-2-WildType-Random": {
+        "virus": "SARS-CoV-2",
+        "strain": "SARS-CoV-2-WildType",
+        "prefix": "random",
+        "description": "This is a special entry for the randomized negative control model. You can use `random` in the `path` field ` to fake a randomized model inference result.",
+        "path": "random"
+    }
+
+}

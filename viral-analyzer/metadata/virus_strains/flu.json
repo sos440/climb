@@ -1,0 +1,15 @@
+{
+    "Influenza": {
+        "virus": "Influenza A",
+        "name": "Influenza A Wildtype",
+        "description": "Wild type Influenza A (See Hie. et al.)",
+        "prefix": "flu",
+        "sequence-path": "data/sequences/seq_flu_wt.csv",
+        "stat-dist": [
+            578844598,
+            335151651,
+            416619225,
+            404503464
+        ]
+    }
+}
