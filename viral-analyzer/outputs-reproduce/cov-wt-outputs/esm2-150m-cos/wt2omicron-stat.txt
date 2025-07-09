@@ -1,0 +1,32 @@
+Virus: SARS-CoV-2
+Strain: SARS-CoV-2-WildType
+Escape Mutants: SARS-CoV-2-WildType>Omicron
+Result File: SARS-CoV-2-WildType-ESM-150M-Cos
+
+--------------------------------------------------------------------------------
+
+Standard CSCS
+Mean Rank: 10366.23 ± 5749.98
+
+--------------------------------------------------------------------------------
+
+T = 0.01
+Mean Rank: 2533.03 ± 1848.46
+
+T = 0.033
+Mean Rank: 2531.37 ± 1799.01
+
+T = 0.1
+Mean Rank: 2558.43 ± 1757.40
+
+T = 0.33
+Mean Rank: 2965.83 ± 2140.19
+
+T = 1.0
+Mean Rank: 4261.67 ± 3283.74
+
+T = 3.3
+Mean Rank: 6906.77 ± 4554.54
+
+T = 10.0
+Mean Rank: 8934.53 ± 5173.87

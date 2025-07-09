@@ -13,6 +13,7 @@ from typing import Iterable, Any
 import plotly.graph_objects as go
 import modules.analyzer as an
 from modules.plotly_custom import create_ternary_contour
+from modules.ternary_custom import draw_ternary_plot
 
 
 STRAIN_DATA: dict[str, Any] = an.STRAIN_DATA
@@ -20,7 +21,7 @@ ESCAPE_DATA: dict[str, Any] = an.ESCAPE_DATA
 RESULT_DATA: dict[str, Any] = an.RESULT_DATA
 
 
-def random_df(strain: str):
+def random_df(strain: str, seed: int | None = None):
     """
     Creates a fake DataFrame for the specified strain with random semantic and grammar scores.
     This is used for providing negative controls for the analysis.
@@ -38,7 +39,8 @@ def random_df(strain: str):
         df = pd.read_csv(f, sep=",", header=0)
 
     # Build a fake DataFrame with random semantic and grammar scores
-    aa_map = {aa: i for i, aa in enumerate(an.STANDARD_AAS)}
+    rng = np.random.default_rng(seed)
+    aa_map = {aa: i for i, aa in enumerate(sorted(an.STANDARD_AAS))}
     rows = []
     for _, row in df.iterrows():
         pos = row["pos"]
@@ -47,8 +49,8 @@ def random_df(strain: str):
         if original_aa not in aa_map:
             continue
 
-        new_semantic = np.random.standard_normal(size=len(aa_map))
-        new_grammar = np.exp(np.random.standard_normal(size=len(aa_map)))
+        new_semantic = rng.standard_normal(size=len(aa_map))
+        new_grammar = np.exp(rng.standard_normal(size=len(aa_map)))
         new_grammar[aa_map[original_aa]] = 0.0
         new_grammar = new_grammar / np.sum(new_grammar)
 
@@ -108,6 +110,9 @@ def calc_iter(
     batch : Iterable[tuple[str, str, float]]
         An iterable of tuples containing the escape mutation type, result type, and evolutionary time parameter.
     """
+    # Parse the options for the computation
+    seed = kwargs.get("seed", None)  # Seed for random number generation
+
     # Sort the batch by the `result` parameter for efficient reuse of the DataFrame
     batch = sorted(batch, key=lambda x: x[1])
 
@@ -153,7 +158,7 @@ def calc_iter(
                 df = last_df
             else:
                 if is_random:
-                    df = random_df(strain)
+                    df = random_df(strain, seed)
                 else:
                     df = pd.read_csv(result_data["path"], sep="\t", header=0)
 
@@ -345,6 +350,7 @@ def get_ablation_control(
     result: str,
     repeat: int = 100,
     times: list[float] | None = None,
+    seed_after: str = "increment",
     **kwargs: dict[str, Any],
 ):
     """
@@ -355,6 +361,9 @@ def get_ablation_control(
     `repeat` number of times for the specified escape and result types. (`ablation` refers to the fact that
     model inference is not used.)
     """
+    assert seed_after in ["increment", "randomize", "fixed"], f"Invalid seed_after value."
+    seed = kwargs.get("seed", None)
+
     # Preamble: Sanitize the inputs and prepare the output directory
     times = times or [0.01, 0.033, 0.1, 0.33, 1.0, 3.3, 10.0]
 
@@ -376,7 +385,7 @@ def get_ablation_control(
     dists: dict[str, list[list[float]]] = {}
     for epoch in tqdm(range(repeat), desc="Computing Ablation Control Scores"):
         cscs_exported = False
-        for context in calc_iter([(escape, result, t) for t in times], **kwargs):
+        for context in calc_iter([(escape, result, t) for t in times], **(kwargs | dict(seed=seed))):
             context, bary_min, fval_min = callback_calc_cac(context, **kwargs)
             t = context.t
             df = context.df
@@ -391,6 +400,12 @@ def get_ablation_control(
             # Compute the mean rank for escape mutations
             cacscs_escape = df["cacscs"][escape_filter]
             dists.setdefault(f"t={t}", []).append(cacscs_escape.to_list())
+        # Update the seed based on the specified seed_after option
+        if seed is not None:
+            if seed_after == "increment":
+                seed += 1
+            elif seed_after == "randomize":
+                seed = np.random.default_rng(seed).integers(0, 2**32 - 1)
 
     def _report_mean_std(matrix: list[list[float]]):
         """
@@ -552,9 +567,9 @@ def draw_minimizer(
     options = {
         "axes": "psg",
         "pole_labels": {"p": "CLIMB", "s": "Semantic", "g": "Grammar"},
-        "colorscale": "Rainbow",
+        "colorscale": "rainbow",
         "showscale": True,
-        "size": 5,
+        "size": 50,
     } | kwargs
 
     options["axes"] = options.get("axes", "psg").lower().strip()
@@ -600,39 +615,53 @@ def draw_minimizer(
     x_sorted = np.array([axes_x_map[axis] for axis in options["axes"]])
     label_sorted = [options["pole_labels"][axis] for axis in options["axes"]]
 
-    # Export the minimizers
-    fig = go.Figure(
-        data=go.Scatterternary(
-            a=x_sorted[0],
-            b=x_sorted[1],
-            c=x_sorted[2],
-            mode="markers",
-            marker=dict(
-                size=options["size"], color=times, colorscale=options["colorscale"], showscale=options["showscale"]
-            ),
-            # text=[f"A: {a_val:.2f}, B: {b_val:.2f}, C: {c_val:.2f}" for a_val, b_val, c_val in data[:, [2, 0, 1]]],
-            # hoverinfo="text",
-        )
-    )
+    # # Export the minimizers
+    # fig = go.Figure(
+    #     data=go.Scatterternary(
+    #         a=x_sorted[0],
+    #         b=x_sorted[1],
+    #         c=x_sorted[2],
+    #         mode="markers",
+    #         marker=dict(
+    #             size=options["size"], color=times, colorscale=options["colorscale"], showscale=options["showscale"]
+    #         ),
+    #         # text=[f"A: {a_val:.2f}, B: {b_val:.2f}, C: {c_val:.2f}" for a_val, b_val, c_val in data[:, [2, 0, 1]]],
+    #         # hoverinfo="text",
+    #     )
+    # )
 
-    # Customize the layout
-    fig.update_layout(
-        title={
-            "text": f"Mean Rank Minimizers for {strain}<br>Escape: {escape}, Result: {result}",
-            "x": 0.5,
-            "xanchor": "center",
-            "yanchor": "top",
+    # # Customize the layout
+    # fig.update_layout(
+    #     title={
+    #         "text": f"Mean Rank Minimizers for {strain}<br>Escape: {escape}, Result: {result}",
+    #         "x": 0.5,
+    #         "xanchor": "center",
+    #         "yanchor": "top",
+    #     },
+    #     ternary=dict(
+    #         aaxis=dict(title=label_sorted[0], showticklabels=False, showline=False),
+    #         baxis=dict(title=label_sorted[1], showticklabels=False, showline=False),
+    #         caxis=dict(title=label_sorted[2], showticklabels=False, showline=False),
+    #     ),
+    #     showlegend=False,
+    # )
+
+    fig, ax = draw_ternary_plot(
+        x_sorted.T,
+        times,
+        axes_labels=label_sorted,
+        grid_steps=5,
+        cmap=options["colorscale"],
+        marker_opts={
+            "s": options["size"],
+            "linewidth": 0,
+            "alpha": 1,
         },
-        ternary=dict(
-            aaxis=dict(title=label_sorted[0], min=0, linewidth=2, ticks="outside"),
-            baxis=dict(title=label_sorted[1], min=0, linewidth=2, ticks="outside"),
-            caxis=dict(title=label_sorted[2], min=0, linewidth=2, ticks="outside"),
-        ),
-        showlegend=False,
     )
 
     output_path_fig = output_root / f"{output_prefix}-min.pdf"
-    fig.write_image(output_path_fig, width=800, height=600)
+    # fig.write_image(output_path_fig, width=800, height=600)
+    fig.savefig(output_path_fig, bbox_inches="tight", dpi=300)
 
     # Export the metadata to a JSON file
     with open(output_root / f"{output_prefix}-min-metadata.json", "w") as f:
@@ -694,14 +723,14 @@ def main():
     parser.add_argument(
         "--escape",
         type=str,
-        default="SARS-CoV-2-WildType>DMS",
-        help=f"Specify the escape type to analyze. Make sure to wrap your input with quotation marks. Adding `*` to the argument matches any types that starts with it. ({', '.join(ESCAPE_DATA.keys())})",
+        default="SARS-CoV-2-DMS",
+        help=f"Specify the escape type to analyze. Adding `*` to the argument matches any types that starts with it. ({''.join(ESCAPE_DATA.keys())})",
     )
     parser.add_argument(
         "--result",
         type=str,
-        default="SARS-CoV-2-WildType-Hie",
-        help=f"Specify the result type to analyze. Make sure to wrap your input with quotation marks. Adding `*` to the argument matches any types that starts with it. ({', '.join(RESULT_DATA.keys())})",
+        default="SARS-CoV-2-Hie",
+        help=f"Specify the result type to analyze. Adding `*` to the argument matches any types that starts with it. ({''.join(RESULT_DATA.keys())})",
     )
     parser.add_argument(
         "--ablation",
@@ -742,24 +771,30 @@ def main():
         default=100,
         help="Specify the number of repeats for the ablation control experiment. Default is `100`.",
     )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=None,
+        help="Specify the random seed for the random number generation. Default is `None`.",
+    )
     args = parser.parse_args()
 
     # Export the scores for the specified escape and result types
     if args.scores:
         for escape, result in iter_escape_result(args.escape, args.result):
             print(f"Calculating scores for result '{result}' and escape '{escape}'...")
-            get_scores(escape, result, times=args.times)
+            get_scores(escape, result, times=args.times, seed=args.seed)
 
     # Export the statistical analysis of the ablation control experiment
     if args.ablation:
         for escape, result in iter_escape_result(args.escape, args.result):
             print(f"Performing ablation control for result '{result}' and escape '{escape}'...")
-            get_ablation_control(escape, result, repeat=args.repeat, times=args.times)
+            get_ablation_control(escape, result, repeat=args.repeat, times=args.times, seed=args.seed)
 
     if args.ternary:
         for escape, result in iter_escape_result(args.escape, args.result):
             print(f"Drawing ternary plots for result '{result}' and escape '{escape}'...")
-            draw_ternary(escape, result, res=args.res, times=args.times)
+            draw_ternary(escape, result, res=args.res, times=args.times, seed=args.seed)
 
     if args.minimizer is not None:
         # Sanitize the input parameters
@@ -774,7 +809,7 @@ def main():
 
         for escape, result in iter_escape_result(args.escape, args.result):
             print(f"Drawing minimizer plot for result '{result}' and escape '{escape}'...")
-            draw_minimizer(escape, result, times=times)
+            draw_minimizer(escape, result, times=times, seed=args.seed)
 
 
 if __name__ == "__main__":

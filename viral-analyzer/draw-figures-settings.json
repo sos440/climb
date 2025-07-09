@@ -1,0 +1,34 @@
+{
+    "erase-ticks": false,
+    "validation-sets": [
+        "SARS-CoV-2-WildType>DMS",
+        "SARS-CoV-2-WildType>Alpha",
+        "SARS-CoV-2-WildType>Beta",
+        "SARS-CoV-2-WildType>Delta",
+        "SARS-CoV-2-WildType>Omicron",
+        "SARS-CoV-2-WildType>Combined"
+    ],
+    "datasets": [
+        {
+            "value": "SARS-CoV-2-WildType-Random",
+            "label": "Random"
+        },
+        {
+            "value": "SARS-CoV-2-WildType-Hie",
+            "label": "Hie"
+        },
+        {
+            "value": "SARS-CoV-2-WildType-ESM-150M-Cos",
+            "label": "ESM-150M"
+        },
+        {
+            "value": "SARS-CoV-2-WildType-ESM-650M-Cos",
+            "label": "ESM-650M"
+        },
+        {
+            "value": "SARS-CoV-2-WildType-ESM-3B-Cos",
+            "label": "ESM-3B"
+        }
+    ],
+    "time": 1.0
+}
