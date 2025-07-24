@@ -18,6 +18,7 @@ and visualize them in the form of box-whisker plots.
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.colors import ListedColormap, LinearSegmentedColormap
 import numpy as np
 import json
 import csv
@@ -65,6 +66,35 @@ for path in DATASET_PATHS:
                 continue
             # Add to the dictionary
             DATABASE[serial] = data
+
+
+# Define the Wong palette (7-color common variant) using HEX codes
+# Black, Orange, Sky Blue, Greenish Yellow, Blue, Vermillion, Reddish Purple
+wong_colors_hex = [
+    "#000000",  # Black
+    "#E69F00",  # Orange
+    "#56B4E9",  # Sky Blue
+    "#009E73",  # Greenish Yellow (turquoise-ish)
+    "#F0E442",  # Orange-yellow (often muted or omitted for 7-color)
+    "#0072B2",  # Blue
+    "#D55E00",  # Vermillion (red-orange)
+    "#CC79A7",  # Reddish Purple
+]
+
+publication_markers = [
+    "o",  # Circle
+    "s",  # Square
+    "D",  # Diamond
+    "^",  # Upward triangle
+    "v",  # Downward triangle
+    "P",  # Filled plus
+    "X",  # Filled 'x'
+    "h",  # Hexagon
+    "*",  # Star
+    "+",  # Plus (unfilled)
+    "x",  # 'x' (unfilled)
+    "d",  # Thin diamond
+]
 
 
 def report_rank_stats(data: ArrayLike, range: int, sep: str = "\n") -> str:
@@ -200,7 +230,7 @@ def export_plots(escape: str):
                 positions=[positions[i] - width],
                 widths=0.25,
                 patch_artist=True,
-                boxprops=dict(facecolor="lightblue"),
+                boxprops=dict(facecolor=wong_colors_hex[1]),
                 medianprops=dict(color="black"),
             )
             ax.boxplot(
@@ -208,7 +238,7 @@ def export_plots(escape: str):
                 positions=[positions[i] + width],
                 widths=0.25,
                 patch_artist=True,
-                boxprops=dict(facecolor="lightgreen"),
+                boxprops=dict(facecolor=wong_colors_hex[2]),
                 medianprops=dict(color="black"),
             )
 
@@ -257,7 +287,7 @@ def export_plots(escape: str):
         # Draw the AUC bar chart
         fig, ax = plt.subplots(figsize=(10, 6))
         positions = np.arange(num_entries)
-        colors = ["lightblue", "lightgreen"]
+        colors = [wong_colors_hex[1], wong_colors_hex[2]]
         width = 0.15
         for i, value in enumerate(values):
             ax.bar(
@@ -312,10 +342,11 @@ def export_plots(escape: str):
                 times,
                 data_csc_ranks[value],
                 label=labels[i],
-                marker="o",
+                marker=publication_markers[i],
                 linewidth=2.5,
                 linestyle="--",
                 markersize=10,
+                c=wong_colors_hex[i + 1],
             )
 
         # Axes settings
@@ -369,7 +400,7 @@ def export_plots(escape: str):
         # Draw the bar chart
         fig, ax = plt.subplots(figsize=(10, 6))
         labels_models = list(v2l_map[value] for value in values_models)
-        colors = ["grey", "r", "g", "b"]
+        colors = wong_colors_hex[:4]
         width = 0.12
         for i, t in enumerate(times):
             means = np.array(data_cac[f"t={t}"])
